@@ -43,33 +43,28 @@ void	fill_score(t_cake *c)
 			if (c->score[i - c->line_len - 1] < c->score[i])
 				c->score[i] = c->score[i - c->line_len - 1];
 			if (c->score[i]++ > c->square_score)
-			{
 				c->square_position = i;
+			if (c->score[i] > c->square_score)
 				c->square_score = c->score[i];
-			}
 		}
 	}
-}
-
-void	read_map(t_cake *cake)
-{
-	int i = 0;
-	cake->buffer = malloc(OPTI_BUFFER);
-	cake->buffer_len = read(0, cake->buffer, OPTI_BUFFER);
-	while(cake->buffer[i] != '.')
-		i++;
-	cake->buffer_len -= i + 2;
-	cake->buffer = &cake->buffer[i + 2];
-	cake->score = malloc(sizeof(unsigned short) * cake->buffer_len);
-	fill_score(cake);
 }
 
 int	main(void)
 {
 	t_cake	cake;
+	int		i;
 
 	cake.line_len = 0;
-	read_map(&cake);
+	i = 0;
+	cake.buffer = malloc(OPTI_BUFFER);
+	cake.buffer_len = read(0, cake.buffer, OPTI_BUFFER);
+	while (cake.buffer[i] != '.')
+		i++;
+	cake.buffer_len -= i + 2;
+	cake.buffer = &cake.buffer[i + 2];
+	cake.score = malloc(sizeof(unsigned short) * cake.buffer_len);
+	fill_score(&cake);
 	print_cake(&cake);
 	return (0);
 }
