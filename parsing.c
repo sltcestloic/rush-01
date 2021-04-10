@@ -3,7 +3,7 @@
 int	read_map()
 {
 	int size;
-	char *buff;
+	t_cake buff;
 	unsigned short *score;
 
 	buff = malloc(OPTI_BUFFER);
@@ -13,5 +13,5 @@ int	read_map()
 	if (size == OPTI_BUFFER)
 		ft_overbuff(buff);
 	score = malloc(sizeof(unsigned short) * size);
-	
+
 }
