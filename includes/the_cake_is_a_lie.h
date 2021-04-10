@@ -5,6 +5,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_cake
 {
@@ -15,5 +16,8 @@ typedef struct s_cake
 	unsigned short	square_score;
 	unsigned short	*score;
 }				t_cake;
+
+void	read_map(t_cake *cake);
+void	print_square(t_cake *cake);
 
 #endif 

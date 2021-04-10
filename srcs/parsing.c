@@ -33,8 +33,6 @@ void	read_map(t_cake *cake)
 {
 	int i = 0;
 	cake->buffer = malloc(OPTI_BUFFER);
-	if (cake->buffer == 0)
-		return (-1);
 	cake->buffer_len = read(0, cake->buffer, OPTI_BUFFER);
 	// if (cake->buffer_len == OPTI_BUFFER)
 	// 	ft_overbuff(&cake);
