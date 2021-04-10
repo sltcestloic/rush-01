@@ -38,7 +38,7 @@ void	read_map(t_cake *cake)
 	// 	ft_overbuff(&cake);
 	while(cake->buffer[i] != '.')
 		i++;
-	cake->buffer = &cake->buffer[i + 1];
+	cake->buffer = &cake->buffer[i + 2];
 	cake->score = malloc(sizeof(unsigned short) * cake->buffer_len);
 	fill_score(cake);
 }
