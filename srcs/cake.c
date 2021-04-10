@@ -24,7 +24,6 @@ void	print_cake(t_cake *cake)
 void	fill_score(t_cake *c)
 {
 	int				i;
-	unsigned short	lowest;
 
 	i = -1;
 	while (++i < c->buffer_len)
@@ -38,16 +37,15 @@ void	fill_score(t_cake *c)
 			c->score[i] = 1;
 		else
 		{
-			lowest = c->score[i - 1];
-			if (c->score[i - c->line_len] < lowest)
-				lowest = c->score[i - c->line_len];
-			if (c->score[i - c->line_len - 1] < lowest)
-				lowest = c->score[i - c->line_len - 1];
-			c->score[i] = lowest + 1;
-			if (lowest + 1 > c->square_score)
+			c->score[i] = c->score[i - 1];
+			if (c->score[i - c->line_len] < c->score[i])
+				c->score[i] = c->score[i - c->line_len];
+			if (c->score[i - c->line_len - 1] < c->score[i])
+				c->score[i] = c->score[i - c->line_len - 1];
+			if (c->score[i]++ > c->square_score)
 			{
 				c->square_position = i;
-				c->square_score = lowest + 1;
+				c->square_score = c->score[i];
 			}
 		}
 	}
