@@ -1,9 +1,6 @@
 NAME        =       rush
 
-SRCS        =       srcs/utilities.c \
-					srcs/parsing.c \
-					srcs/main.c \
-					srcs/print.c
+SRCS        =       srcs/cake.c
 					
 OBJS        =       ${SRCS:.c=.o}
 
