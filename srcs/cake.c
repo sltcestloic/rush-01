@@ -1,5 +1,26 @@
 #include "the_cake_is_a_lie.h"
 
+void	print_cake(t_cake *cake)
+{
+	unsigned short	score;
+	int				i;
+
+	score = cake->square_score;
+	i = cake->square_position;
+	while (score)
+	{
+		while (i > cake->square_position - cake->square_score)
+		{
+			cake->buffer[i] = '.';
+			i--;
+		}
+		i = cake->square_position - cake->line_len;
+		cake->square_position = i;
+		score--;
+	}
+	write(1, cake->buffer, cake->buffer_len);
+}
+
 void	fill_score(t_cake *c)
 {
 	int				i;
@@ -43,4 +64,14 @@ void	read_map(t_cake *cake)
 	cake->buffer = &cake->buffer[i + 2];
 	cake->score = malloc(sizeof(unsigned short) * cake->buffer_len);
 	fill_score(cake);
+}
+
+int	main(void)
+{
+	t_cake	cake;
+
+	cake.line_len = 0;
+	read_map(&cake);
+	print_cake(&cake);
+	return (0);
 }
