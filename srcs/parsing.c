@@ -23,8 +23,11 @@ void	fill_score(t_cake *c)
 			if (c->score[i - c->line_len - 1] < lowest)
 				lowest = c->score[i - c->line_len - 1];
 			c->score[i] = lowest + 1;
-			c->square_position = i;
-			c->square_score = lowest + 1;
+			if (lowest + 1 > c->square_score)
+			{
+				c->square_position = i;
+				c->square_score = lowest + 1;
+			}
 		}
 	}
 }
@@ -38,6 +41,7 @@ void	read_map(t_cake *cake)
 	// 	ft_overbuff(&cake);
 	while(cake->buffer[i] != '.')
 		i++;
+	cake->buffer_len -= i + 2;
 	cake->buffer = &cake->buffer[i + 2];
 	cake->score = malloc(sizeof(unsigned short) * cake->buffer_len);
 	fill_score(cake);
