@@ -2,5 +2,9 @@
 
 int	main()
 {
-	read_map();
+	t_cake cake;
+
+	cake.line_len = 0;
+	read_map(&cake);
+	
 }
