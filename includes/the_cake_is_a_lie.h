@@ -3,10 +3,10 @@
 
 # define OPTI_BUFFER 200000005
 
-#include <unistd.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-typedef struct 		s_cake
+typedef struct s_cake
 {
 	char			*buffer;
 	int				line_len;
@@ -14,6 +14,6 @@ typedef struct 		s_cake
 	int				square_position;
 	unsigned short	square_score;
 	unsigned short	*score;
-}					t_cake;
+}				t_cake;
 
 #endif 

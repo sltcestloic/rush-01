@@ -1,6 +1,6 @@
 #include "the_cake_is_a_lie.h"
 
-int	fill_score(t_cake *c)
+void	fill_score(t_cake *c)
 {
 	int				i;
 	unsigned short	lowest;
@@ -29,7 +29,7 @@ int	fill_score(t_cake *c)
 	}
 }
 
-int	read_map(t_cake *cake)
+void	read_map(t_cake *cake)
 {
 	cake->buffer = malloc(OPTI_BUFFER);
 	if (cake->buffer == 0)

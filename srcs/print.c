@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lubourre <lubourre@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:05:41 by lbertran          #+#    #+#             */
-/*   Updated: 2021/04/10 13:36:32 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 13:53:27 by lubourre         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	print_square(t_cake *cake)
 	printf("%s\n", cake->buffer);
 }
 
-int main()
-{
-	t_cake *cake = malloc(sizeof(t_cake *)); 
+// int main()
+// {
+// 	t_cake *cake = malloc(sizeof(t_cake *)); 
 
-	cake->buffer = malloc(sizeof(char) * ((6 * 7) + 1));
-	strcpy(cake->buffer, "0000000\n0111100\n0122200\n0123300\n0123400\n0000000");
-	cake->line_len = 8;
-	cake->square_position = 36;
-	cake->square_score = 4;
-	printf("%s\n", cake->buffer);
-	print_square(cake);
-}
+// 	cake->buffer = malloc(sizeof(char) * ((6 * 7) + 1));
+// 	strcpy(cake->buffer,"0000000\n0111100\n0122200\n0123300\n0123400\n0000000");
+// 	cake->line_len = 8;
+// 	cake->square_position = 36;
+// 	cake->square_score = 4;
+// 	printf("%s\n", cake->buffer);
+// 	print_square(cake);
+// }
