@@ -6,7 +6,7 @@
 /*   By: lbertran <lbertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:05:41 by lbertran          #+#    #+#             */
-/*   Updated: 2021/04/10 14:27:19 by lbertran         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 14:31:55 by lbertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@ void	print_square(t_cake *cake)
 
 	score = cake->square_score;
 	i = cake->square_position;
-	printf("score: %d\npos: %d\n", score, i);
 	while (cake->square_score)
 	{
-		printf("%d\n", cake->square_position - cake->square_score);
-		while (i % cake->line_len)
+		while (i > cake->square_position - score)
 		{
-			printf("%d\n", i);
 			cake->buffer[i] = '.';
 			i--;
 		}
