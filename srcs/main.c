@@ -6,7 +6,6 @@ int	main(void)
 
 	cake.line_len = 0;
 	read_map(&cake);
-	print_square(&cake);
-	//printf("Sqr_pos = %d\nSqr_score = %d\nLine_len = %d\nBuff_len = %d\n", cake.square_position, cake.square_score, cake.line_len, cake.buffer_len);
+	print_cake(&cake);
 	return (0);
 }

@@ -18,6 +18,6 @@ typedef struct s_cake
 }				t_cake;
 
 void	read_map(t_cake *cake);
-void	print_square(t_cake *cake);
+void	print_cake(t_cake *cake);
 
 #endif 
