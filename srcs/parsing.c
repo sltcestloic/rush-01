@@ -31,12 +31,16 @@ void	fill_score(t_cake *c)
 
 void	read_map(t_cake *cake)
 {
+	int i = 0;
 	cake->buffer = malloc(OPTI_BUFFER);
 	if (cake->buffer == 0)
 		return (-1);
 	cake->buffer_len = read(0, cake->buffer, OPTI_BUFFER);
-	if (cake->buffer_len == OPTI_BUFFER)
-		ft_overbuff(&cake);
+	// if (cake->buffer_len == OPTI_BUFFER)
+	// 	ft_overbuff(&cake);
+	while(cake->buffer[i] != '.')
+		i++;
+	cake->buffer = &cake->buffer[i + 1];
 	cake->score = malloc(sizeof(unsigned short) * cake->buffer_len);
 	fill_score(cake);
 }
