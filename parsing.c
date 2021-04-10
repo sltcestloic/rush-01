@@ -4,12 +4,14 @@ int	read_map()
 {
 	int size;
 	char *buff;
+	unsigned short *score;
 
-	buff = malloc(1000000);
+	buff = malloc(OPTI_BUFFER);
 	if (buff == 0)
 		return (-1);
-	size = read(0, buff, 1000000);
-	if (size == 1000000)
-		ft_realloc(buff);
+	size = read(0, buff, OPTI_BUFFER);
+	if (size == OPTI_BUFFER)
+		ft_overbuff(buff);
+	score = malloc(sizeof(unsigned short) * size);
 	
 }
