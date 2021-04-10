@@ -7,7 +7,7 @@ SRCS        =       srcs/utilities.c \
 					
 OBJS        =       ${SRCS:.c=.o}
 
-CFLAGS		=		-Wall -Wextra -Werror -g3
+CFLAGS		=		-Wall -Wextra -Werror
 
 CC			=		gcc
 
