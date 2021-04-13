@@ -56,9 +56,15 @@ int	main(void)
 	int		i;
 
 	cake.line_len = 0;
-	i = 0;
+	i = 1;
 	cake.buffer = malloc(OPTI_BUFFER);
-	cake.buffer_len = read(0, cake.buffer, OPTI_BUFFER);
+	reader(&cake);
+	while (i)
+	{
+		i = read(0, &cake.buffer[cake.buffer_len], OPTI_BUFFER);
+		cake.buffer_len += i;
+	}
+	i = 0;
 	while (cake.buffer[i] != '.')
 		i++;
 	cake.buffer_len -= i + 2;
