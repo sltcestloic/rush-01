@@ -56,6 +56,8 @@ int	main(void)
 	int		i;
 
 	cake.line_len = 0;
+	cake.square_score = 0;
+	cake.buffer_len = 0;
 	i = 1;
 	cake.buffer = malloc(OPTI_BUFFER);
 	while (i)
@@ -63,12 +65,13 @@ int	main(void)
 		i = read(0, &cake.buffer[cake.buffer_len], OPTI_BUFFER);
 		cake.buffer_len += i;
 	}
+	cake.buffer[cake.buffer_len] = 0;
 	i = 0;
 	while (cake.buffer[i] != '.')
 		i++;
 	cake.buffer_len -= i + 2;
 	cake.buffer = &cake.buffer[i + 2];
-	cake.score = malloc(sizeof(unsigned short) * cake.buffer_len);
+	cake.score = malloc(sizeof(unsigned short) * 1);
 	fill_score(&cake, -1);
 	print_cake(&cake);
 	free(cake.buffer - (2 + i));

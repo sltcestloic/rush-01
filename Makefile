@@ -4,7 +4,7 @@ SRCS        =       srcs/cake.c
 					
 OBJS        =       ${SRCS:.c=.o}
 
-CFLAGS		=		-Wall -Wextra -Werror
+CFLAGS		=		-Wall -Wextra -Werror -fsanitize=leak -g3
 
 CC			=		gcc
 
