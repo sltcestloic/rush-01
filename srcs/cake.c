@@ -22,7 +22,7 @@ void	print_cake(t_cake *cake)
 	}
 	write(1, cake->buffer, cake->buffer_len);
 }
-
+#include <stdio.h>
 void	fill_score(t_cake *c, int i)
 {
 	while (++i < c->buffer_len)
@@ -62,7 +62,7 @@ int	main(void)
 	cake.buffer = malloc(OPTI_BUFFER);
 	while (i)
 	{
-		i = read(0, &cake.buffer[cake.buffer_len], OPTI_BUFFER);
+		i = read(0, &cake.buffer[cake.buffer_len], 4096);
 		cake.buffer_len += i;
 	}
 	cake.buffer[cake.buffer_len] = 0;
