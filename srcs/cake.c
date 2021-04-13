@@ -71,7 +71,7 @@ int	main(void)
 		i++;
 	cake.buffer_len -= i + 2;
 	cake.buffer = &cake.buffer[i + 2];
-	cake.score = malloc(sizeof(unsigned short) * 1);
+	cake.score = malloc(sizeof(unsigned short) * cake.buffer_len);
 	fill_score(&cake, -1);
 	print_cake(&cake);
 	free(cake.buffer - (2 + i));
