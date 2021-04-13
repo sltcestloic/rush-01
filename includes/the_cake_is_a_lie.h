@@ -2,6 +2,7 @@
 # define THE_CAKE_IS_A_LIE_H
 
 # define OPTI_BUFFER 1073774594
+# define MAX_BUFF 65529
 
 # include <unistd.h>
 # include <stdlib.h>
