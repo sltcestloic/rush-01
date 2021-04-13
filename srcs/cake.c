@@ -1,5 +1,5 @@
 #include "the_cake_is_a_lie.h"
-
+#include <string.h>
 void	print_cake(t_cake *cake)
 {
 	unsigned short	score;
@@ -7,6 +7,8 @@ void	print_cake(t_cake *cake)
 
 	score = cake->square_score;
 	i = cake->square_position;
+	if (score == 0)
+		cake->buffer[0] = '.';
 	while (score)
 	{
 		while (i > cake->square_position - cake->square_score)
@@ -42,7 +44,7 @@ void	fill_score(t_cake *c)
 				c->score[i] = c->score[i - c->line_len];
 			if (c->score[i - c->line_len - 1] < c->score[i])
 				c->score[i] = c->score[i - c->line_len - 1];
-			if (c->score[i]++ > c->square_score)
+			if (++c->score[i] > c->square_score)
 				c->square_position = i;
 			if (c->score[i] > c->square_score)
 				c->square_score = c->score[i];
