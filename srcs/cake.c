@@ -23,7 +23,7 @@ static inline void	print_cake(t_cake *cake)
 	write(1, cake->buffer, cake->buffer_len);
 }
 
-static inline void	swap(t_cake *cake, int *i)
+static inline void	swap(t_cake *cake, register int *i)
 {
 	cake->swap = cake->score_a;
 	cake->score_a = cake->score_b;
@@ -31,7 +31,7 @@ static inline void	swap(t_cake *cake, int *i)
 	*i = -1;
 }
 
-static inline void	fill_score(t_cake *c, int i, int j)
+static inline void	fill_score(t_cake *c, int i, register int j)
 {
 	while (++j < c->buffer_len && ++i > -1)
 	{
@@ -60,8 +60,11 @@ static inline void	fill_score(t_cake *c, int i, int j)
 	}
 }
 
+#include <stdio.h>
+#include <time.h>
 int	main(void)
 {
+	clock_t start = clock();
 	t_cake			cake;
 	register int	i;
 
@@ -86,5 +89,7 @@ int	main(void)
 	free(cake.buffer - (2 + i));
 	free(cake.score_a);
 	free(cake.score_b);
+	clock_t end = clock();
+	printf("%f\n", (double)(end - start) / CLOCKS_PER_SEC);
 	return (0);
 }
