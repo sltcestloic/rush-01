@@ -24,6 +24,6 @@ RUN make re && make fclean && make
 
 ARG NAME
 
-RUN time cat tmp/map | ./rush > /dev/null
+RUN time cat tmp/map | ./rush
 
 CMD /bin/bash

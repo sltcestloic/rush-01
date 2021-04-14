@@ -39,7 +39,7 @@ static inline void	fill_score(t_cake *c, int i, int j)
 			c->line_len = i + 1;
 		else if (i == 0)
 			c->score_b[i] = 1;
-		else if (c->buffer[i] == '\n')
+		if (c->buffer[i] == '\n')
 			swap(c, &i);
 		else if (c->buffer[j - 1] != c->buffer[j] || c->buffer[j - c->line_len]
 			!= c->buffer[j] || c->buffer[j - 1 - c->line_len] != c->buffer[j])
