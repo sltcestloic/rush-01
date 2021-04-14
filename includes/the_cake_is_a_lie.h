@@ -13,6 +13,9 @@ typedef struct s_cake
 	int				buffer_len;
 	int				square_position;
 	unsigned short	square_score;
+	unsigned short	*score_a;
+	unsigned short	*score_b;
+	unsigned short	*swap;
 }				t_cake;
 
 #endif 
