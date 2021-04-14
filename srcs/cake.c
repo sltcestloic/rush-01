@@ -1,9 +1,9 @@
 #include "the_cake_is_a_lie.h"
 
-void	print_cake(t_cake *cake)
+static inline void	print_cake(t_cake *cake)
 {
-	unsigned short	score;
-	int				i;
+	register unsigned short	score;
+	register int				i;
 
 	score = cake->square_score;
 	i = cake->square_position;
@@ -23,37 +23,56 @@ void	print_cake(t_cake *cake)
 	write(1, cake->buffer, cake->buffer_len);
 }
 
-void	fill_score(t_cake *c, int i)
+static inline void	fill_score(t_cake *c, int i)
 {
-	while (++i < c->buffer_len)
+	register unsigned short *score_a;
+	register unsigned short *score_b;
+	register unsigned short *swap;
+
+	score_a = malloc(c->line_len);
+	score_b = malloc(c->line_len);
+	register int j = -1;
+	while (++j < c->buffer_len)
 	{
+		i++;
 		if (c->line_len == 0 && c->buffer[i] == '\n')
 			c->line_len = i + 1;
-		if (c->line_len == 0 || (i % c->line_len) == 0)
-			c->score[i] = 1;
-		else if (c->buffer[i - 1] != c->buffer[i] || c->buffer[i - c->line_len]
-			!= c->buffer[i] || c->buffer[i - 1 - c->line_len] != c->buffer[i])
-			c->score[i] = 1;
+		else if (c->line_len == 0 || (i % c->line_len) == 0)
+			score_b[i] = 1;
+		else if (c->buffer[i] == '\n')
+		{
+			swap = score_a;
+			score_a = score_b;
+			score_b = swap;
+			i = -1;
+		}
+		else if (c->buffer[j - 1] != c->buffer[j] || c->buffer[j - c->line_len]
+			!= c->buffer[j] || c->buffer[j - 1 - c->line_len] != c->buffer[j])
+			score_b[i] = 1;
 		else
 		{
-			c->score[i] = c->score[i - 1];
-			if (c->score[i - c->line_len] < c->score[i])
-				c->score[i] = c->score[i - c->line_len];
-			if (c->score[i - c->line_len - 1] < c->score[i])
-				c->score[i] = c->score[i - c->line_len - 1];
-			if (++c->score[i] > c->square_score)
+			score_b[i] = score_b[i - 1];
+			if (score_a[i] < score_b[i])
+				score_b[i] = score_a[i];
+			if (score_a[i - 1] < score_b[i])
+				score_b[i] = score_a[i - 1];
+			if (++score_b[i] > c->square_score)
 			{
-				c->square_position = i;
-				c->square_score = c->score[i];
+				c->square_position = j;
+				c->square_score = score_b[i];
 			}
 		}
 	}
+	free(score_a);
+	free(score_b);
 }
-
+#include <time.h>
+#include <stdio.h>
 int	main(void)
 {
+	clock_t begin = clock();
 	t_cake	cake;
-	int		i;
+	register int		i;
 
 	cake.line_len = 0;
 	cake.square_score = 0;
@@ -71,10 +90,11 @@ int	main(void)
 		i++;
 	cake.buffer_len -= i + 2;
 	cake.buffer = &cake.buffer[i + 2];
-	cake.score = malloc(sizeof(unsigned short) * cake.buffer_len);
 	fill_score(&cake, -1);
 	print_cake(&cake);
 	free(cake.buffer - (2 + i));
-	free(cake.score);
+	clock_t end = clock();
+	double time = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("%f\n", time);
 	return (0);
 }
