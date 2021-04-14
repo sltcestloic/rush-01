@@ -22,7 +22,7 @@ void	print_cake(t_cake *cake)
 	}
 	write(1, cake->buffer, cake->buffer_len);
 }
-#include <stdio.h>
+
 void	fill_score(t_cake *c, int i)
 {
 	while (++i < c->buffer_len)
