@@ -1,6 +1,6 @@
 #include "the_cake_is_a_lie.h"
 
-static inline void	print_cake(t_cake *cake)
+static inline void	print_cake(register t_cake *cake)
 {
 	register unsigned short	score;
 	register int			i;
@@ -23,7 +23,7 @@ static inline void	print_cake(t_cake *cake)
 	write(1, cake->buffer, cake->buffer_len);
 }
 
-static inline void	swap(t_cake *cake, register int *i)
+static inline void	swap(register t_cake *cake, register int *i)
 {
 	cake->swap = cake->score_a;
 	cake->score_a = cake->score_b;
@@ -31,7 +31,7 @@ static inline void	swap(t_cake *cake, register int *i)
 	*i = -1;
 }
 
-static inline void	fill_score(t_cake *c, int i, register int j)
+static inline void	fill_score(register t_cake *c, int i, register int j)
 {
 	while (++j < c->buffer_len && ++i > -1)
 	{
@@ -60,13 +60,10 @@ static inline void	fill_score(t_cake *c, int i, register int j)
 	}
 }
 
-#include <stdio.h>
-#include <time.h>
 int	main(void)
 {
-	clock_t start = clock();
-	t_cake			cake;
-	register int	i;
+	t_cake				cake;
+	register int		i;
 
 	cake.line_len = 0;
 	cake.square_score = 0;
@@ -89,7 +86,5 @@ int	main(void)
 	free(cake.buffer - (2 + i));
 	free(cake.score_a);
 	free(cake.score_b);
-	clock_t end = clock();
-	printf("%f\n", (double)(end - start) / CLOCKS_PER_SEC);
 	return (0);
 }
