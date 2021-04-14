@@ -73,7 +73,7 @@ int	main(void)
 	cake.buffer = malloc(OPTI_BUFFER);
 	while (cake.buffer_len == 0 || i)
 	{
-		i = read(0, &cake.buffer[cake.buffer_len], 4096);
+		i = read(0, &cake.buffer[cake.buffer_len], 60000);
 		cake.buffer_len += i;
 	}
 	i = 0;
